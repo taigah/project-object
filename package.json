@@ -1,0 +1,26 @@
+{
+  "name": "project-object",
+  "version": "1.0.0",
+  "description": "A simple, light-weight MongoDB $project-like function allowing you to filter your objects properties with ease.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha && npx eslint . --fix"
+  },
+  "repository": "https://github.com/taigah/project-object",
+  "author": "taigah.dev@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.11.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "mocha": "^5.2.0",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "test"
+  ]
+}
