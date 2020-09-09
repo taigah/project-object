@@ -35,6 +35,49 @@ describe('Project', () => {
     })
   })
 
+  describe('when providing a spec with strings', () => {
+    it('should rename the property', () => {
+      assert.deepStrictEqual(project({
+        a: {
+          b: 'b'
+        }
+      }, {
+        a: {
+          b: 'foo'
+        }
+      }), {
+        a: {
+          foo: 'b'
+        }
+      })
+    })
+  })
+
+  describe('when providing a spec with array containing only one string and one spec', () => {
+    it('should rename the property and properly project his value', () => {
+      assert.deepStrictEqual(project({
+        a: {
+          b: {
+            c: 'c',
+            d: 'd'
+          }
+        }
+      }, {
+        a: {
+          b: ['foo', {
+            c: 1
+          }]
+        }
+      }), {
+        a: {
+          foo: {
+            c: 'c'
+          }
+        }
+      })
+    })
+  })
+
   describe('when not specyfing to keep a property', () => {
     it('should not keep it', () => {
       assert.notProperty(project({ a: 1 }, {}), 'a')
@@ -103,11 +146,19 @@ describe('Project', () => {
     })
   })
 
-  describe('when providing a spec with non-0 and non-1 values', () => {
+  describe('when providing a spec with non-0, non-1, non-string and non-array value', () => {
     it('should throw an error', () => {
       assert.throw(() => {
-        project({ a: 1 }, { a: 'foo' })
-      }, 'Your projection spec should only contain ones and zeros')
+        project({ a: 1 }, { a: false })
+      }, 'Your projection spec should only contain ones, zeros, strings and arrays')
+    })
+  })
+
+  describe('when providing a spec with invalid array', () => {
+    it('should throw an error', () => {
+      assert.throw(() => {
+        project({ a: 1, b: { c: 1 } }, { a: [{ b: 1 }, { b: 1 }] })
+      }, 'Arrays in your projection should only contain one string and one projection spec')
     })
   })
 })
