@@ -1,6 +1,6 @@
 {
   "name": "project-object",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A simple, light-weight MongoDB $project-like function allowing you to filter your objects properties with ease.",
   "main": "index.js",
   "scripts": {
